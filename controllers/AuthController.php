@@ -1,5 +1,6 @@
 <?php
 namespace Controllers;
+require_once __DIR__ . '/../models/User.php';
 use Models\User;
 
 class AuthController {
@@ -14,11 +15,11 @@ class AuthController {
                 $_SESSION['usuario_id'] = $usuario->id;
                 $_SESSION['usuario_nome'] = $usuario->nome;
                 $_SESSION['usuario_perfil'] = $usuario->perfil_id;
-                header('Location: ../views/dashboard/dashboard');
+                header('Location: views/dashboard/index.php');
                 exit;
             } else {
                 $_SESSION['erro_login'] = "Email ou senha incorretos.";
-                header('Location: ../views/auth/login');
+                header('Location: views/auth/login.php');
                 exit;
             }
         }
@@ -26,7 +27,7 @@ class AuthController {
 
     public function logout() {
         session_destroy();
-        header('Location: ../views/auth/login');
+        header('Location: views/auth/login.php');
         exit;
     }
 }

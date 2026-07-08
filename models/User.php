@@ -1,10 +1,12 @@
 <?php
 namespace Models;
 
+require_once __DIR__ . '/../config/Database.php';
+
 use Config\Database;
 use PDO;
 
-class Usuario {
+class User {
 
     public static function buscarPorEmail($email) {
         $db = Database::getConnection();
@@ -14,6 +16,6 @@ class Usuario {
         $stmt->bindValue(':email', $email);
         $stmt->execute();
 
-        return $stmt->fetch();
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
 }

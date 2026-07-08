@@ -19,7 +19,7 @@ unset($_SESSION['erro_login']);
             <p class="erro"><?= htmlspecialchars($erro) ?></p>
         <?php endif; ?>
 
-        <form action="../dashboard/index.php?action=login" method="POST" id="formLogin">
+        <form action="../../index.php?action=login" method="POST" id="formLogin">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" required>
 
