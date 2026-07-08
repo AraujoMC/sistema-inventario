@@ -1,117 +1,273 @@
-/* ===== RESET BÁSICO ===== */
-/* Remove margens/paddings default do browser para teres controlo total */
+/* =====================================
+   SISTEMA DE INVENTÁRIO
+   LOGIN ERP PROFISSIONAL
+===================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
+
 
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #f0f2f5;
+
     min-height: 100vh;
+
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+
+    background: #eef2f7;
+
 }
 
-/* ===== CONTAINER DO LOGIN ===== */
+
+/* Container */
+
 .login-container {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 380px;
+
+    width: 430px;
+
+    background: #ffffff;
+
+    padding: 45px;
+
+    border-radius: 14px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+    0 10px 30px rgba(15,23,42,0.12);
+
 }
+
+
+/* Cabeçalho */
 
 .login-container h1 {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 24px;
-    font-size: 24px;
+
+    font-size: 28px;
+
+    color:#0f172a;
+
+    text-align:center;
+
+    font-weight:700;
+
+    margin-bottom:35px;
+
 }
 
-/* ===== FORMULÁRIO ===== */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+
+.login-container h1::after {
+
+    content:"";
+
+    display:block;
+
+    width:50px;
+
+    height:4px;
+
+    background:#2563eb;
+
+    margin:15px auto 0;
+
+    border-radius:5px;
+
 }
 
-form label {
-    font-size: 14px;
-    color: #34495e;
-    font-weight: 600;
-    margin-bottom: -8px; /* aproxima do input logo abaixo */
+
+
+/* Labels */
+
+.login-container label {
+
+    color:#334155;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+    display:block;
+
 }
 
-form input {
-    padding: 12px 14px;
-    border: 1px solid #dcdfe3;
-    border-radius: 6px;
-    font-size: 15px;
-    transition: border-color 0.2s ease;
+
+
+/* Campos */
+
+
+.login-container input {
+
+
+    width:100%;
+
+    height:48px;
+
+    border:1px solid #cbd5e1;
+
+    border-radius:8px;
+
+    padding:0 15px;
+
+    font-size:15px;
+
+    margin-bottom:20px;
+
+    outline:none;
+
+    transition:.2s;
+
 }
 
-form input:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+
+.login-container input:hover {
+
+    border-color:#94a3b8;
+
 }
 
-/* ===== BOTÃO ===== */
-form button {
-    margin-top: 8px;
-    padding: 12px;
-    background-color: #3498db;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+
+.login-container input:focus {
+
+
+    border-color:#2563eb;
+
 }
 
-form button:hover {
-    background-color: #2980b9;
+
+
+/* Botão */
+
+
+.login-container button {
+
+
+    width:100%;
+
+    height:50px;
+
+
+    background:#1e40af;
+
+
+    color:white;
+
+
+    border:none;
+
+
+    border-radius:8px;
+
+
+    font-size:16px;
+
+
+    font-weight:600;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
 }
 
-form button:active {
-    background-color: #21618c;
+
+.login-container button:hover {
+
+
+    background:#1d4ed8;
+
+
 }
 
-/* ===== MENSAGEM DE ERRO ===== */
-.erro {
-    background-color: #fdecea;
-    color: #c0392b;
-    border: 1px solid #f5b7b1;
-    padding: 10px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    margin-bottom: 16px;
-    text-align: center;
-}
 
-/* ===== LINK "ESQUECI A SENHA" ===== */
+
+/* Recuperação */
+
+
 .login-container a {
-    display: block;
-    text-align: center;
-    margin-top: 18px;
-    color: #3498db;
-    text-decoration: none;
-    font-size: 14px;
+
+
+    display:block;
+
+    text-align:center;
+
+
+    margin-top:25px;
+
+
+    color:#2563eb;
+
+
+    font-size:14px;
+
+
+    text-decoration:none;
+
+
 }
+
 
 .login-container a:hover {
-    text-decoration: underline;
+
+    text-decoration:underline;
+
 }
 
-/* ===== RESPONSIVIDADE (telemóvel) ===== */
-@media (max-width: 480px) {
-    .login-container {
-        padding: 28px 20px;
-        margin: 16px;
+
+
+/* Erro */
+
+
+.erro {
+
+
+    background:#fff1f2;
+
+    color:#be123c;
+
+
+    padding:12px;
+
+
+    border-left:4px solid #e11d48;
+
+
+    margin-bottom:20px;
+
+
+    border-radius:6px;
+
+
+    font-size:14px;
+
+
+}
+
+
+
+/* Responsivo */
+
+
+@media(max-width:500px){
+
+    .login-container{
+
+        width:90%;
+
+        padding:30px;
+
     }
+
 }
