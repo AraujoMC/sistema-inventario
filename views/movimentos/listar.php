@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['utilizador_id'])) {
-    header('Location: ../login.php');
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../auth/login.php');
     exit;
 }
 ?>
@@ -10,23 +10,23 @@ if (!isset($_SESSION['utilizador_id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Movimentos de Stock</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['nome']) ?></span>
-        <a href="../../index.php?action=logout">Sair</a>
+        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
+        <a href="index.php?action=logout">Sair</a>
     </header>
 
     <nav>
-        <a href="../dashboard.php">Dashboard</a>
+        <a href="index.php?action=dashboard">Dashboard</a>
         <a href="../produtos/listar.php">Produtos</a>
-        <a href="listar.php">Movimentos</a>
+        <a href="index.php?action=movimentos">Movimentos</a>
     </nav>
 
     <main>
         <h1>Movimentos de Stock</h1>
-        <a href="criar.php" class="btn-novo">+ Novo Movimento</a>
+        <a href="index.php?action=movimento-novo" class="btn-novo">+ Novo Movimento</a>
 
         <table>
             <thead>

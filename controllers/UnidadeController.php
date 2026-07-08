@@ -1,10 +1,10 @@
 <?php
 namespace Controllers;
 
-require_once __DIR__ . '/../models/Localizacao.php';
-use Models\Localizacao;
+require_once __DIR__ . '/../models/Unidade.php';
+use Models\Unidade;
 
-class LocalizacaoController {
+class UnidadeController {
 
     private function protegerRota() {
         if (session_status() === PHP_SESSION_NONE) { session_start(); }
@@ -16,25 +16,25 @@ class LocalizacaoController {
 
     public function index() {
         $this->protegerRota();
-        $localizacoes = Localizacao::listarTodas();
-        require_once __DIR__ . '/../views/localizacoes/listar.php';
+        $unidades = Unidade::listarTodas();
+        require_once __DIR__ . '/../views/unidades/listar.php';
     }
 
     public function novo() {
         $this->protegerRota();
-        require_once __DIR__ . '/../views/localizacoes/criar.php';
+        require_once __DIR__ . '/../views/unidades/criar.php';
     }
 
     public function armazenar() {
         $this->protegerRota();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $codigo = filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_SPECIAL_CHARS);
             $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+            $sigla = filter_input(INPUT_POST, 'sigla', FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if (!empty($nome) && !empty($codigo)) {
-                Localizacao::criar($codigo, $nome);
+            if (!empty($nome) && !empty($sigla)) {
+                Unidade::criar($nome, $sigla);
             }
-            header('Location: index.php?action=localizacoes');
+            header('Location: index.php?action=unidades');
             exit;
         }
     }
@@ -42,25 +42,25 @@ class LocalizacaoController {
     public function editar() {
         $this->protegerRota();
         $id = $_GET['id'] ?? null;
-        if (!$id) { header('Location: index.php?action=localizacoes'); exit; }
+        if (!$id) { header('Location: index.php?action=unidades'); exit; }
 
-        $localizacao = Localizacao::buscarPorId($id);
-        if (!$localizacao) { header('Location: index.php?action=localizacoes'); exit; }
+        $unidade = Unidade::buscarPorId($id);
+        if (!$unidade) { header('Location: index.php?action=unidades'); exit; }
 
-        require_once __DIR__ . '/../views/localizacoes/editar.php';
+        require_once __DIR__ . '/../views/unidades/editar.php';
     }
 
     public function atualizar() {
         $this->protegerRota();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'] ?? null;
-            $codigo = filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_SPECIAL_CHARS);
             $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+            $sigla = filter_input(INPUT_POST, 'sigla', FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if ($id && !empty($nome) && !empty($codigo)) {
-                Localizacao::atualizar($id, $codigo, $nome);
+            if ($id && !empty($nome) && !empty($sigla)) {
+                Unidade::atualizar($id, $nome, $sigla);
             }
-            header('Location: index.php?action=localizacoes');
+            header('Location: index.php?action=unidades');
             exit;
         }
     }
@@ -69,9 +69,9 @@ class LocalizacaoController {
         $this->protegerRota();
         $id = $_GET['id'] ?? null;
         if ($id) {
-            Localizacao::apagar($id);
+            Unidade::apagar($id);
         }
-        header('Location: index.php?action=localizacoes');
+        header('Location: index.php?action=unidades');
         exit;
     }
 }

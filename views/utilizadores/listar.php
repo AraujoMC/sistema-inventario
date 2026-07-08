@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['utilizador_id'])) {
-    header('Location: ../login.php');
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../auth/login.php');
     exit;
 }
 ?>
@@ -10,22 +10,22 @@ if (!isset($_SESSION['utilizador_id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Utilizadores</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['nome']) ?></span>
-        <a href="../../index.php?action=logout">Sair</a>
+        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
+        <a href="index.php?action=logout">Sair</a>
     </header>
 
     <nav>
-        <a href="../dashboard.php">Dashboard</a>
-        <a href="listar.php">Utilizadores</a>
+        <a href="index.php?action=dashboard">Dashboard</a>
+        <a href="index.php?action=utilizadores">Utilizadores</a>
     </nav>
 
     <main>
         <h1>Utilizadores</h1>
-        <a href="criar.php" class="btn-novo">+ Novo Utilizador</a>
+        <a href="index.php?action=utilizador-novo" class="btn-novo">+ Novo Utilizador</a>
 
         <table>
             <thead>
@@ -46,8 +46,8 @@ if (!isset($_SESSION['utilizador_id'])) {
                             <td><?= htmlspecialchars($utilizador['email']) ?></td>
                             <td><?= htmlspecialchars($utilizador['perfil_nome']) ?></td>
                             <td>
-                                <a href="editar.php?id=<?= urlencode($utilizador['id']) ?>">Editar</a>
-                                <a href="../../index.php?action=apagar_utilizador&id=<?= urlencode($utilizador['id']) ?>"
+                                <a href="index.php?action=utilizador-editar&id=<?= urlencode($utilizador['id']) ?>">Editar</a>
+                                <a href="index.php?action=apagar_utilizador&id=<?= urlencode($utilizador['id']) ?>"
                                    onclick="return confirm('Apagar este utilizador?')">Apagar</a>
                             </td>
                         </tr>

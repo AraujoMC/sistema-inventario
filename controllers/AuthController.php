@@ -29,7 +29,7 @@ class AuthController {
                     $_SESSION['usuario_perfil'] = $perfilBanco;
                     
                     session_write_close();
-                    header('Location: views/dashboard/index.php');
+                    header('Location: index.php?action=dashboard');
                     exit;
                 }
             }

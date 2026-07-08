@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario_id'])) {
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Categorias</title>
+    <title>Unidades de Medida</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -27,29 +27,29 @@ if (!isset($_SESSION['usuario_id'])) {
     </nav>
 
     <main>
-        <h1>Categorias</h1>
-        <a href="index.php?action=categoria-nova" class="btn-novo">+ Nova Categoria</a>
+        <h1>Unidades de Medida</h1>
+        <a href="index.php?action=unidade-nova" class="btn-novo">+ Nova Unidade</a>
 
         <table>
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Descrição</th>
+                    <th>Sigla</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <?php if (empty($categorias)): ?>
-                    <tr><td colspan="3">Nenhuma categoria encontrada.</td></tr>
+                <?php if (empty($unidades)): ?>
+                    <tr><td colspan="3">Nenhuma unidade encontrada.</td></tr>
                 <?php else: ?>
-                    <?php foreach ($categorias as $categoria): ?>
+                    <?php foreach ($unidades as $unidade): ?>
                         <tr>
-                            <td><?= htmlspecialchars($categoria['nome']) ?></td>
-                            <td><?= htmlspecialchars($categoria['descricao']) ?></td>
+                            <td><?= htmlspecialchars($unidade['nome']) ?></td>
+                            <td><?= htmlspecialchars($unidade['sigla']) ?></td>
                             <td>
-                                <a href="index.php?action=categoria-editar&id=<?= urlencode($categoria['id']) ?>">Editar</a>
-                                <a href="index.php?action=apagar_categoria&id=<?= urlencode($categoria['id']) ?>"
-                                   onclick="return confirm('Apagar esta categoria?')">Apagar</a>
+                                <a href="index.php?action=unidade-editar&id=<?= urlencode($unidade['id']) ?>">Editar</a>
+                                <a href="index.php?action=apagar_unidade&id=<?= urlencode($unidade['id']) ?>"
+                                   onclick="return confirm('Apagar esta unidade?')">Apagar</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

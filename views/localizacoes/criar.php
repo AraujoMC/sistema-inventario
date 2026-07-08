@@ -1,7 +1,7 @@
 <?php
-session_start();
-if (!isset($_SESSION['utilizador_id'])) {
-    header('Location: ../login.php');
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../auth/login.php');
     exit;
 }
 $erro = $_SESSION['erro_form'] ?? null;
@@ -12,12 +12,12 @@ unset($_SESSION['erro_form']);
 <head>
     <meta charset="UTF-8">
     <title>Nova Localização</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['nome']) ?></span>
-        <a href="../../index.php?action=logout">Sair</a>
+        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
+        <a href="index.php?action=logout">Sair</a>
     </header>
 
     <main>
@@ -27,7 +27,7 @@ unset($_SESSION['erro_form']);
             <p class="erro"><?= htmlspecialchars($erro) ?></p>
         <?php endif; ?>
 
-        <form action="../../index.php?action=criar_localizacao" method="POST">
+        <form action="index.php?action=nova-localizacao" method="POST">
             <label for="codigo">Código</label>
             <input type="text" name="codigo" id="codigo" required>
 
@@ -37,7 +37,7 @@ unset($_SESSION['erro_form']);
             <button type="submit">Guardar</button>
         </form>
 
-        <a href="listar.php">← Voltar à lista</a>
+        <a href="index.php?action=localizacoes">← Voltar à lista</a>
     </main>
 </body>
 </html>

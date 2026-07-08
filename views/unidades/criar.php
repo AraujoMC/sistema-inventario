@@ -4,14 +4,12 @@ if (!isset($_SESSION['usuario_id'])) {
     header('Location: ../auth/login.php');
     exit;
 }
-$erro = $_SESSION['erro_form'] ?? null;
-unset($_SESSION['erro_form']);
 ?>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Nova Categoria</title>
+    <title>Nova Unidade de Medida</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -21,23 +19,19 @@ unset($_SESSION['erro_form']);
     </header>
 
     <main>
-        <h1>Nova Categoria</h1>
+        <h1>Nova Unidade de Medida</h1>
 
-        <?php if ($erro): ?>
-            <p class="erro"><?= htmlspecialchars($erro) ?></p>
-        <?php endif; ?>
-
-        <form action="index.php?action=nova-categoria" method="POST">
-            <label for="nome">Nome</label>
+        <form action="index.php?action=nova-unidade" method="POST">
+            <label for="nome">Nome (ex: Quilograma)</label>
             <input type="text" name="nome" id="nome" required>
 
-            <label for="descricao">Descrição</label>
-            <input type="text" name="descricao" id="descricao">
+            <label for="sigla">Sigla (ex: kg)</label>
+            <input type="text" name="sigla" id="sigla" required>
 
             <button type="submit">Guardar</button>
         </form>
 
-        <a href="index.php?action=categorias">← Voltar à lista</a>
+        <a href="index.php?action=unidades">← Voltar à lista</a>
     </main>
 </body>
 </html>

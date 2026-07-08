@@ -1,7 +1,7 @@
 <?php
-session_start();
-if (!isset($_SESSION['utilizador_id'])) {
-    header('Location: ../login.php');
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../auth/login.php');
     exit;
 }
 ?>
@@ -10,24 +10,25 @@ if (!isset($_SESSION['utilizador_id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Localizações</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['nome']) ?></span>
-        <a href="../../index.php?action=logout">Sair</a>
+        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
+        <a href="index.php?action=logout">Sair</a>
     </header>
 
     <nav>
-        <a href="../dashboard.php">Dashboard</a>
-        <a href="../produtos/listar.php">Produtos</a>
-        <a href="../categorias/listar.php">Categorias</a>
-        <a href="listar.php">Localizações</a>
+        <a href="index.php?action=dashboard">Dashboard</a>
+        <a href="index.php?action=produtos">Produtos</a>
+        <a href="index.php?action=categorias">Categorias</a>
+        <a href="index.php?action=localizacoes">Localizações</a>
+        <a href="index.php?action=unidades">Unidades</a>
     </nav>
 
     <main>
         <h1>Localizações</h1>
-        <a href="criar.php" class="btn-novo">+ Nova Localização</a>
+        <a href="index.php?action=localizacao-nova" class="btn-novo">+ Nova Localização</a>
 
         <table>
             <thead>
@@ -46,8 +47,8 @@ if (!isset($_SESSION['utilizador_id'])) {
                             <td><?= htmlspecialchars($localizacao['codigo']) ?></td>
                             <td><?= htmlspecialchars($localizacao['nome']) ?></td>
                             <td>
-                                <a href="editar.php?id=<?= urlencode($localizacao['id']) ?>">Editar</a>
-                                <a href="../../index.php?action=apagar_localizacao&id=<?= urlencode($localizacao['id']) ?>"
+                                <a href="index.php?action=localizacao-editar&id=<?= urlencode($localizacao['id']) ?>">Editar</a>
+                                <a href="index.php?action=apagar_localizacao&id=<?= urlencode($localizacao['id']) ?>"
                                    onclick="return confirm('Apagar esta localização?')">Apagar</a>
                             </td>
                         </tr>

@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['utilizador_id'])) {
-    header('Location: ../login.php');
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../auth/login.php');
     exit;
 }
 ?>
@@ -10,18 +10,18 @@ if (!isset($_SESSION['utilizador_id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Editar Utilizador</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['nome']) ?></span>
-        <a href="../../index.php?action=logout">Sair</a>
+        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
+        <a href="index.php?action=logout">Sair</a>
     </header>
 
     <main>
         <h1>Editar Utilizador</h1>
 
-        <form action="../../index.php?action=editar_utilizador" method="POST">
+        <form action="index.php?action=editar_utilizador" method="POST">
             <input type="hidden" name="id" value="<?= htmlspecialchars($utilizador['id']) ?>">
 
             <label for="nome">Nome</label>
@@ -46,7 +46,7 @@ if (!isset($_SESSION['utilizador_id'])) {
             <button type="submit">Actualizar</button>
         </form>
 
-        <a href="listar.php">← Voltar à lista</a>
+        <a href="index.php?action=utilizadores">← Voltar à lista</a>
     </main>
 </body>
 </html>

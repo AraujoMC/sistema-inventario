@@ -11,7 +11,16 @@ class Unidade {
         $db = Database::getConnection();
         $sql = "SELECT * FROM unidades_medida ORDER BY nome ASC";
         $stmt = $db->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function buscarPorId($id) {
+        $db = Database::getConnection();
+        $sql = "SELECT * FROM unidades_medida WHERE id = :id LIMIT 1";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function criar($nome, $sigla) {
@@ -22,5 +31,23 @@ class Unidade {
             ':nome' => $nome,
             ':sigla' => $sigla
         ]);
+    }
+
+    public static function atualizar($id, $nome, $sigla) {
+        $db = Database::getConnection();
+        $sql = "UPDATE unidades_medida SET nome = :nome, sigla = :sigla WHERE id = :id";
+        $stmt = $db->prepare($sql);
+        return $stmt->execute([
+            ':id' => $id,
+            ':nome' => $nome,
+            ':sigla' => $sigla
+        ]);
+    }
+
+    public static function apagar($id) {
+        $db = Database::getConnection();
+        $sql = "DELETE FROM unidades_medida WHERE id = :id";
+        $stmt = $db->prepare($sql);
+        return $stmt->execute([':id' => $id]);
     }
 }
