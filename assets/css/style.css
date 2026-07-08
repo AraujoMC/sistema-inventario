@@ -427,3 +427,59 @@ html {
         font-size: 26px;
     }
 }
+/* ===== DASHBOARD — BOAS-VINDAS ===== */
+.dashboard-boas-vindas {
+    margin-bottom: 32px;
+}
+
+.dashboard-boas-vindas h1 {
+    color: #2c3e50;
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.dashboard-boas-vindas p {
+    color: #5a6672;
+    font-size: 15px;
+}
+
+/* ===== DASHBOARD — GRELHA DE CARTÕES ===== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    background-color: #ffffff;
+    border: 1px solid #eef0f2;
+    border-radius: 10px;
+    padding: 26px 20px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.dashboard-card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+    border-color: #3498db;
+}
+
+.dashboard-icone {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.dashboard-card h3 {
+    color: #2c3e50;
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+.dashboard-card p {
+    color: #8a94a0;
+    font-size: 13px;
+    line-height: 1.4;
+}
