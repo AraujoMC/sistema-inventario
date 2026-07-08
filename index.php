@@ -4,9 +4,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once 'controllers/AuthController.php';
-require_once 'backend/controllers/CategoriaController.php';
-require_once 'backend/controllers/UnidadeController.php';
-require_once 'backend/controllers/LocalizacaoController.php';
+require_once 'controllers/CategoriaController.php';
+require_once 'controllers/UnidadeController.php';
+require_once 'controllers/LocalizacaoController.php';
 
 
 $action = $_GET['action'] ?? '';
