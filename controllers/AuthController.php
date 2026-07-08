@@ -14,11 +14,11 @@ class AuthController {
                 $_SESSION['usuario_id'] = $usuario->id;
                 $_SESSION['usuario_nome'] = $usuario->nome;
                 $_SESSION['usuario_perfil'] = $usuario->perfil_id;
-                header('Location: ../views/dashboard');
+                header('Location: ../views/dashboard/dashboard');
                 exit;
             } else {
                 $_SESSION['erro_login'] = "Email ou senha incorretos.";
-                header('Location: ../views/login');
+                header('Location: ../views/auth/login');
                 exit;
             }
         }
@@ -26,7 +26,7 @@ class AuthController {
 
     public function logout() {
         session_destroy();
-        header('Location: ../views/login');
+        header('Location: ../views/auth/login');
         exit;
     }
 }
