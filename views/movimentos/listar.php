@@ -20,7 +20,7 @@ if (!isset($_SESSION['usuario_id'])) {
 
     <nav>
         <a href="index.php?action=dashboard">Dashboard</a>
-        <a href="../produtos/listar.php">Produtos</a>
+        <a href="index.php?action=produtos">Produtos</a>
         <a href="index.php?action=movimentos">Movimentos</a>
     </nav>
 
