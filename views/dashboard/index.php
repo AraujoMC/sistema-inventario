@@ -1,12 +1,28 @@
 <?php
-session_start();
+// views/dashboard/index.php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Segurança de Negócio: Se o utilizador não estiver logado, manda de volta para o login
 if (!isset($_SESSION['usuario_id'])) {
-    header('Location: ../auth/login.php'); // Ajustado o caminho para voltar à pasta auth
+    header('Location: ../auth/login.php');
     exit;
 }
+
+// Pegamos as variáveis corretas que o AuthController gravou
+$nomeUsuario   = $_SESSION['usuario_nome'];
+$perfilUsuario = $_SESSION['usuario_perfil'];
 ?>
-<span>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
-<span>Perfil: <?= htmlspecialchars($_SESSION['usuario_perfil']) ?></span>
+
+<div class="header">
+    <p>Bem-vindo, <?= htmlspecialchars($nomeUsuario) ?></p> 
+    
+    <p>Perfil: <?= htmlspecialchars($perfilUsuario) ?></p> 
+    
+    <a href="../../index.php?action=logout">Sair</a>
+</div>
 
 
 <!DOCTYPE html>
@@ -18,8 +34,8 @@ if (!isset($_SESSION['usuario_id'])) {
 </head>
 <body>
     <header>
-        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['nome']) ?></span>
-        <span>Perfil: <?= htmlspecialchars($_SESSION['perfil']) ?></span>
+        <span>Bem-vindo, <?= htmlspecialchars($nomeUsuario) ?></span>
+        <span>Perfil: <?= htmlspecialchars($perfilUsuario) ?></span>
         <a href="../index.php?action=logout">Sair</a>
     </header>
 

@@ -9,7 +9,7 @@ unset($_SESSION['erro_login']);
 <head>
     <meta charset="UTF-8">
     <title>Login - Sistema de Inventário</title>
-    <link rel="stylesheet" href="../assets/css/assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
     <div class="login-container">
