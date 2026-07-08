@@ -7,6 +7,9 @@ require_once 'controllers/AuthController.php';
 require_once 'controllers/CategoriaController.php';
 require_once 'controllers/UnidadeController.php';
 require_once 'controllers/LocalizacaoController.php';
+require_once 'controllers/ProdutoController.php';
+require_once 'controllers/MovimentoController.php';
+require_once 'controllers/UtilizadorController.php';
 
 $action = $_GET['action'] ?? '';
 
@@ -89,6 +92,57 @@ switch ($action) {
         break;
     case 'apagar_localizacao':
         (new \Controllers\LocalizacaoController())->apagar();
+        break;
+
+    // ---------- Produtos ----------
+    case 'produtos':
+        (new \Controllers\ProdutoController())->index();
+        break;
+    case 'produto-novo':
+        (new \Controllers\ProdutoController())->novo();
+        break;
+    case 'criar_produto':
+        (new \Controllers\ProdutoController())->armazenar();
+        break;
+    case 'produto-editar':
+        (new \Controllers\ProdutoController())->editar();
+        break;
+    case 'editar_produto':
+        (new \Controllers\ProdutoController())->atualizar();
+        break;
+    case 'apagar_produto':
+        (new \Controllers\ProdutoController())->apagar();
+        break;
+
+    // ---------- Movimentos de stock ----------
+    case 'movimentos':
+        (new \Controllers\MovimentoController())->index();
+        break;
+    case 'movimento-novo':
+        (new \Controllers\MovimentoController())->novo();
+        break;
+    case 'criar_movimento':
+        (new \Controllers\MovimentoController())->armazenar();
+        break;
+
+    // ---------- Utilizadores ----------
+    case 'utilizadores':
+        (new \Controllers\UtilizadorController())->index();
+        break;
+    case 'utilizador-novo':
+        (new \Controllers\UtilizadorController())->novo();
+        break;
+    case 'criar_utilizador':
+        (new \Controllers\UtilizadorController())->armazenar();
+        break;
+    case 'utilizador-editar':
+        (new \Controllers\UtilizadorController())->editar();
+        break;
+    case 'editar_utilizador':
+        (new \Controllers\UtilizadorController())->atualizar();
+        break;
+    case 'apagar_utilizador':
+        (new \Controllers\UtilizadorController())->apagar();
         break;
 
     default:
