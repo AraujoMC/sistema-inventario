@@ -1,20 +1,34 @@
 <?php
+<<<<<<< HEAD
 // views/inicio/index.php
 
+=======
+>>>>>>> 162372fabb17a2e0d243b4693303507592f8765d
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+<<<<<<< HEAD
 // Se já estiver logado, manda direto para o dashboard
 if (isset($_SESSION['usuario_id'])) {
     header('Location: ../dashboard/index.php');
     exit;
 }
+=======
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: views/auth/login.php');
+    exit;
+}
+
+$nomeUsuario   = $_SESSION['usuario_nome'];
+$perfilUsuario = $_SESSION['usuario_perfil'];
+>>>>>>> 162372fabb17a2e0d243b4693303507592f8765d
 ?>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <title>Sistema de Inventário</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
@@ -80,5 +94,32 @@ if (isset($_SESSION['usuario_id'])) {
     <footer class="footer-inicial">
         <p>Sistema de Inventário &copy; 2026 — Projecto Final PW</p>
     </footer>
+=======
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+    <header>
+        <span>Bem-vindo, <?= htmlspecialchars($nomeUsuario) ?></span>
+        <span>Perfil: <?= htmlspecialchars($perfilUsuario) ?></span>
+        <a href="index.php?action=logout">Sair</a>
+    </header>
+
+    <nav>
+        <a href="index.php?action=dashboard">Dashboard</a>
+        <a href="index.php?action=produtos">Produtos</a>
+        <a href="index.php?action=categorias">Categorias</a>
+        <a href="index.php?action=localizacoes">Localizações</a>
+        <a href="index.php?action=unidades">Unidades</a>
+        <a href="index.php?action=movimentos">Movimentos</a>
+        <a href="index.php?action=utilizadores">Utilizadores</a>
+    </nav>
+
+    <main>
+        <h1>Sistema de Gestão de Inventário</h1>
+        <p>Escolha uma opção no menu para começar.</p>
+    </main>
+>>>>>>> 162372fabb17a2e0d243b4693303507592f8765d
 </body>
 </html>

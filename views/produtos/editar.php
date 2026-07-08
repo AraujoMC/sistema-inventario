@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['utilizador_id'])) {
-    header('Location: ../login.php');
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../auth/login.php');
     exit;
 }
 // $produto vem do controller (os dados do produto específico, encontrado pelo id no URL)
@@ -12,18 +12,18 @@ if (!isset($_SESSION['utilizador_id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Editar Produto</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['nome']) ?></span>
-        <a href="../../index.php?action=logout">Sair</a>
+        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
+        <a href="index.php?action=logout">Sair</a>
     </header>
 
     <main>
         <h1>Editar Produto</h1>
 
-        <form action="../../index.php?action=editar_produto" method="POST" enctype="multipart/form-data">
+        <form action="index.php?action=editar_produto" method="POST" enctype="multipart/form-data">
             <!-- Campo escondido: diz ao controller QUAL produto estamos a editar -->
             <input type="hidden" name="id" value="<?= htmlspecialchars($produto['id']) ?>">
 
@@ -55,7 +55,7 @@ if (!isset($_SESSION['utilizador_id'])) {
             <button type="submit">Actualizar</button>
         </form>
 
-        <a href="listar.php">← Voltar à lista</a>
+        <a href="index.php?action=produtos">← Voltar à lista</a>
     </main>
 </body>
 </html>

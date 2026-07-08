@@ -1,7 +1,7 @@
     <?php
 session_start();
-if (!isset($_SESSION['utilizador_id'])) {
-    header('Location: ../login.php');
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../auth/login.php');
     exit;
 }
 // $categorias vem do controller — lista para preencher o <select>
@@ -14,12 +14,12 @@ unset($_SESSION['erro_form']);
 <head>
     <meta charset="UTF-8">
     <title>Novo Produto</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['nome']) ?></span>
-        <a href="../../index.php?action=logout">Sair</a>
+        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
+        <a href="index.php?action=logout">Sair</a>
     </header>
 
     <main>
@@ -29,7 +29,7 @@ unset($_SESSION['erro_form']);
             <p class="erro"><?= htmlspecialchars($erro) ?></p>
         <?php endif; ?>
 
-        <form action="../../index.php?action=criar_produto" method="POST" enctype="multipart/form-data">
+        <form action="index.php?action=criar_produto" method="POST" enctype="multipart/form-data">
             <label for="nome">Nome</label>
             <input type="text" name="nome" id="nome" required>
 
@@ -58,7 +58,7 @@ unset($_SESSION['erro_form']);
             <button type="submit">Guardar</button>
         </form>
 
-        <a href="listar.php">← Voltar à lista</a>
+        <a href="index.php?action=produtos">← Voltar à lista</a>
     </main>
 </body>
 </html>

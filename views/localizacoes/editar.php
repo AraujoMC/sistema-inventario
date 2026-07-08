@@ -1,7 +1,7 @@
 <?php
-session_start();
-if (!isset($_SESSION['utilizador_id'])) {
-    header('Location: ../login.php');
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../auth/login.php');
     exit;
 }
 ?>
@@ -10,18 +10,18 @@ if (!isset($_SESSION['utilizador_id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Editar Localização</title>
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['nome']) ?></span>
-        <a href="../../index.php?action=logout">Sair</a>
+        <span>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
+        <a href="index.php?action=logout">Sair</a>
     </header>
 
     <main>
         <h1>Editar Localização</h1>
 
-        <form action="../../index.php?action=editar_localizacao" method="POST">
+        <form action="index.php?action=editar_localizacao" method="POST">
             <input type="hidden" name="id" value="<?= htmlspecialchars($localizacao['id']) ?>">
 
             <label for="codigo">Código</label>
@@ -33,7 +33,7 @@ if (!isset($_SESSION['utilizador_id'])) {
             <button type="submit">Actualizar</button>
         </form>
 
-        <a href="listar.php">← Voltar à lista</a>
+        <a href="index.php?action=localizacoes">← Voltar à lista</a>
     </main>
 </body>
 </html>

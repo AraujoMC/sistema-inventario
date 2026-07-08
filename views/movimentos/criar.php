@@ -1,4 +1,4 @@
-<form action="../../index.php?action=criar_movimento" method="POST">
+<form action="index.php?action=criar_movimento" method="POST">
     <label for="produto_id">Produto</label>
     <select name="produto_id" id="produto_id" required>
         <option value="">-- Escolha --</option>

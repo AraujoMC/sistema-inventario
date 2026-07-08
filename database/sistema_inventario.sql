@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS unidades_medida (
 -- Localizações físicas (armazém, prateleira...)
 CREATE TABLE IF NOT EXISTS localizacoes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    descricao VARCHAR(255)
+    codigo VARCHAR(20) NOT NULL UNIQUE,
+    nome VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB;
 
 -- =============================================================================
