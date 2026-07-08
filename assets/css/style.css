@@ -1,0 +1,117 @@
+/* ===== RESET BÁSICO ===== */
+/* Remove margens/paddings default do browser para teres controlo total */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== CONTAINER DO LOGIN ===== */
+.login-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 380px;
+}
+
+.login-container h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 24px;
+    font-size: 24px;
+}
+
+/* ===== FORMULÁRIO ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+form label {
+    font-size: 14px;
+    color: #34495e;
+    font-weight: 600;
+    margin-bottom: -8px; /* aproxima do input logo abaixo */
+}
+
+form input {
+    padding: 12px 14px;
+    border: 1px solid #dcdfe3;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.2s ease;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+/* ===== BOTÃO ===== */
+form button {
+    margin-top: 8px;
+    padding: 12px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+form button:hover {
+    background-color: #2980b9;
+}
+
+form button:active {
+    background-color: #21618c;
+}
+
+/* ===== MENSAGEM DE ERRO ===== */
+.erro {
+    background-color: #fdecea;
+    color: #c0392b;
+    border: 1px solid #f5b7b1;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* ===== LINK "ESQUECI A SENHA" ===== */
+.login-container a {
+    display: block;
+    text-align: center;
+    margin-top: 18px;
+    color: #3498db;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVIDADE (telemóvel) ===== */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 28px 20px;
+        margin: 16px;
+    }
+}
