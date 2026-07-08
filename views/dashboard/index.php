@@ -1,10 +1,14 @@
 <?php
 session_start();
-if (!isset($_SESSION['utilizador_id'])) {
-    header('Location: login.php');
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ../auth/login.php'); // Ajustado o caminho para voltar à pasta auth
     exit;
 }
 ?>
+<span>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario_nome']) ?></span>
+<span>Perfil: <?= htmlspecialchars($_SESSION['usuario_perfil']) ?></span>
+
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
