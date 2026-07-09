@@ -5,6 +5,10 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $nomeUsuario   = $_SESSION['usuario_nome'];
 $perfilUsuario = $_SESSION['usuario_perfil'];
+$ehAdmin       = ((int) $perfilUsuario === 1);
+
+$erroAcesso = $_SESSION['erro_acesso'] ?? null;
+unset($_SESSION['erro_acesso']);
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -16,6 +20,7 @@ $perfilUsuario = $_SESSION['usuario_perfil'];
 <body>
     <header>
         <span>Bem-vindo, <?= htmlspecialchars($nomeUsuario) ?></span>
+        <a href="index.php?action=meu-perfil">Meu Perfil</a>
         <a href="index.php?action=logout">Sair</a>
     </header>
 
@@ -28,6 +33,9 @@ $perfilUsuario = $_SESSION['usuario_perfil'];
     </nav>
 
     <main>
+        <?php if ($erroAcesso): ?>
+            <p class="erro"><?= htmlspecialchars($erroAcesso) ?></p>
+        <?php endif; ?>
         <div class="dashboard-boas-vindas">
             <h1>Sistema de Gestão de Inventário</h1>
             <p>Escolhe uma opção abaixo para começar.</p>
@@ -59,11 +67,13 @@ $perfilUsuario = $_SESSION['usuario_perfil'];
                 <h3>Movimentos</h3>
                 <p>Histórico de entradas e saídas</p>
             </a>
+            <?php if ($ehAdmin): ?>
             <a href="index.php?action=utilizadores" class="dashboard-card">
                 <div class="dashboard-icone">👤</div>
                 <h3>Utilizadores</h3>
                 <p>Gerir contas e perfis de acesso</p>
             </a>
+            <?php endif; ?>
             <a href="index.php?action=relatorios" class="dashboard-card">
                 <div class="dashboard-icone">📊</div>
                 <h3>Relatórios</h3>

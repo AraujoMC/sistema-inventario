@@ -1,7 +1,7 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) { session_start(); }
+session_start();
 if (!isset($_SESSION['usuario_id'])) {
-   header('Location: views/auth/login.php');   // ✅ correcto
+    header('Location: ../auth/login.php');
     exit;
 }
 // $produto vem do controller (os dados do produto específico, encontrado pelo id no URL)

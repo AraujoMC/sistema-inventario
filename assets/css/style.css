@@ -483,3 +483,11 @@ html {
     font-size: 13px;
     line-height: 1.4;
 }
+.sucesso {
+    background:#f0fdf4;
+    color:#15803d;
+    padding:12px;
+    border-left:4px solid #22c55e;
+    margin-bottom:20px;
+    border-radius:6px;
+}

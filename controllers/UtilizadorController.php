@@ -16,20 +16,30 @@ class UtilizadorController {
         }
     }
 
-    public function index() {
+    // Só Administrador (perfil_id 1) pode gerir utilizadores
+    private function protegerAdmin() {
         $this->protegerRota();
+        if ((int) $_SESSION['usuario_perfil'] !== 1) {
+            $_SESSION['erro_acesso'] = "Acesso restrito ao Administrador.";
+            header('Location: index.php?action=dashboard');
+            exit;
+        }
+    }
+
+    public function index() {
+        $this->protegerAdmin();
         $utilizadores = User::listarTodos();
         require_once __DIR__ . '/../views/utilizadores/listar.php';
     }
 
     public function novo() {
-        $this->protegerRota();
+        $this->protegerAdmin();
         $perfis = Perfil::listarTodos();
         require_once __DIR__ . '/../views/utilizadores/criar.php';
     }
 
     public function armazenar() {
-        $this->protegerRota();
+        $this->protegerAdmin();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
@@ -46,7 +56,7 @@ class UtilizadorController {
     }
 
     public function editar() {
-        $this->protegerRota();
+        $this->protegerAdmin();
         $id = $_GET['id'] ?? null;
         if (!$id) { header('Location: index.php?action=utilizadores'); exit; }
 
@@ -58,7 +68,7 @@ class UtilizadorController {
     }
 
     public function atualizar() {
-        $this->protegerRota();
+        $this->protegerAdmin();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'] ?? null;
             $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -77,7 +87,7 @@ class UtilizadorController {
     }
 
     public function apagar() {
-        $this->protegerRota();
+        $this->protegerAdmin();
         $id = $_GET['id'] ?? null;
         // Impede que o utilizador se apague a si próprio (evita ficar sem admins)
         if ($id && $id != $_SESSION['usuario_id']) {

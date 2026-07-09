@@ -11,6 +11,7 @@ require_once 'controllers/ProdutoController.php';
 require_once 'controllers/MovimentoController.php';
 require_once 'controllers/UtilizadorController.php';
 require_once 'controllers/RelatorioController.php';
+require_once 'controllers/PerfilUsuarioController.php';
 
 $action = $_GET['action'] ?? '';
 
@@ -172,6 +173,17 @@ switch ($action) {
         break;
     case 'relatorio-movimentacoes':
         (new \Controllers\RelatorioController())->movimentacoes();
+        break;
+
+    // ---------- Meu Perfil ----------
+    case 'meu-perfil':
+        (new \Controllers\PerfilUsuarioController())->mostrar();
+        break;
+    case 'atualizar-perfil':
+        (new \Controllers\PerfilUsuarioController())->atualizarDados();
+        break;
+    case 'alterar-senha':
+        (new \Controllers\PerfilUsuarioController())->alterarSenha();
         break;
 
     default:

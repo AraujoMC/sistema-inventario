@@ -1,7 +1,7 @@
     <?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
-    header('Location: views/auth/login.php');   // ✅ correcto
+    header('Location: ../auth/login.php');
     exit;
 }
 // $categorias vem do controller — lista para preencher o <select>
