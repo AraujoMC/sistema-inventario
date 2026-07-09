@@ -3,8 +3,10 @@ namespace Controllers;
 
 require_once __DIR__ . '/../models/Produto.php';
 require_once __DIR__ . '/../models/Categoria.php';
+require_once __DIR__ . '/../services/CambioApi.php';
 use Models\Produto;
 use Models\Categoria;
+use Services\CambioApi;
 
 class ProdutoController {
 
@@ -43,6 +45,7 @@ class ProdutoController {
         $this->protegerRota();
         $pesquisa = $_GET['pesquisa'] ?? null;
         $produtos = Produto::listarTodas($pesquisa);
+        $taxaUsd = CambioApi::obterTaxaUsd();
         require_once __DIR__ . '/../views/produtos/listar.php';
     }
 

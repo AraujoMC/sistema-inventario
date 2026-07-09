@@ -46,7 +46,8 @@ if (!isset($_SESSION['usuario_id'])) {
                     <th>Nome</th>
                     <th>Categoria</th>
                     <th>Quantidade</th>
-                    <th>Preço</th>
+                    <th>Preço (Kz)</th>
+                    <th>Preço (USD)</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -63,6 +64,7 @@ if (!isset($_SESSION['usuario_id'])) {
                             <td><?= htmlspecialchars($produto['categoria_nome']) ?></td>
                             <td><?= htmlspecialchars($produto['quantidade']) ?></td>
                             <td><?= htmlspecialchars($produto['preco']) ?></td>
+                            <td><?= $taxaUsd ? number_format($produto['preco'] * $taxaUsd, 2) . ' $' : '—' ?></td>
                             <td>
                                 <a href="index.php?action=produto-editar&id=<?= urlencode($produto['id']) ?>">Editar</a>
                                 <a href="index.php?action=apagar_produto&id=<?= urlencode($produto['id']) ?>"

@@ -78,4 +78,12 @@ class User {
         $stmt = $db->prepare($sql);
         return $stmt->execute([':id' => $id]);
     }
+
+    // Usado pela recuperação de senha: altera só a senha, nada mais
+    public static function atualizarSenha($id, $senhaHash) {
+        $db = Database::getConnection();
+        $sql = "UPDATE utilizadores SET senha = :senha WHERE id = :id";
+        $stmt = $db->prepare($sql);
+        return $stmt->execute([':id' => $id, ':senha' => $senhaHash]);
+    }
 }

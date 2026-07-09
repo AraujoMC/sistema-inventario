@@ -10,6 +10,7 @@ require_once 'controllers/LocalizacaoController.php';
 require_once 'controllers/ProdutoController.php';
 require_once 'controllers/MovimentoController.php';
 require_once 'controllers/UtilizadorController.php';
+require_once 'controllers/RelatorioController.php';
 
 $action = $_GET['action'] ?? '';
 
@@ -24,6 +25,20 @@ switch ($action) {
     case 'logout':
         $auth = new \Controllers\AuthController();
         $auth->logout();
+        break;
+
+    case 'recuperar-senha':
+        $auth = new \Controllers\AuthController();
+        $auth->solicitarRecuperacao();
+        break;
+
+    case 'redefinir-senha':
+        $auth = new \Controllers\AuthController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $auth->redefinirSenha();
+        } else {
+            $auth->mostrarRedefinir();
+        }
         break;
 
     case 'dashboard':
@@ -143,6 +158,20 @@ switch ($action) {
         break;
     case 'apagar_utilizador':
         (new \Controllers\UtilizadorController())->apagar();
+        break;
+
+    // ---------- Relatórios ----------
+    case 'relatorios':
+        (new \Controllers\RelatorioController())->index();
+        break;
+    case 'relatorio-produtos':
+        (new \Controllers\RelatorioController())->produtos();
+        break;
+    case 'relatorio-stock-baixo':
+        (new \Controllers\RelatorioController())->stockBaixo();
+        break;
+    case 'relatorio-movimentacoes':
+        (new \Controllers\RelatorioController())->movimentacoes();
         break;
 
     default:
