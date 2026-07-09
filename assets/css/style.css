@@ -316,6 +316,17 @@ main form input[type="submit"]:hover {
     cursor: pointer;
 }
 
+.form-pesquisa a {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.form-pesquisa a:hover {
+    color: var(--accent-hover);
+}
+
 main > a {
     display: inline-block;
     margin-top: 22px;

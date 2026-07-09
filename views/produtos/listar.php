@@ -36,7 +36,21 @@ if (!isset($_SESSION['usuario_id'])) {
             <input type="hidden" name="action" value="produtos">
             <input type="text" name="pesquisa" placeholder="Pesquisar por nome ou código..."
                    value="<?= htmlspecialchars($_GET['pesquisa'] ?? '') ?>">
+
+            <select name="categoria_id">
+                <option value="">Todas as categorias</option>
+                <?php foreach ($categorias as $categoria): ?>
+                    <option value="<?= htmlspecialchars($categoria['id']) ?>"
+                        <?= (($_GET['categoria_id'] ?? '') == $categoria['id']) ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($categoria['nome']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+
+            <input type="date" name="data" value="<?= htmlspecialchars($_GET['data'] ?? '') ?>">
+
             <button type="submit">Pesquisar</button>
+            <a href="index.php?action=produtos">Limpar</a>
         </form>
 
         <table>

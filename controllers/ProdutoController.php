@@ -44,7 +44,11 @@ class ProdutoController {
     public function index() {
         $this->protegerRota();
         $pesquisa = $_GET['pesquisa'] ?? null;
-        $produtos = Produto::listarTodas($pesquisa);
+        $categoriaId = $_GET['categoria_id'] ?? null;
+        $data = $_GET['data'] ?? null;
+
+        $produtos = Produto::listarTodas($pesquisa, $categoriaId, $data);
+        $categorias = Categoria::listarTodas();
         $taxaUsd = CambioApi::obterTaxaUsd();
         require_once __DIR__ . '/../views/produtos/listar.php';
     }

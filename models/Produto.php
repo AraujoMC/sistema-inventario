@@ -7,19 +7,35 @@ use PDO;
 
 class Produto {
 
-    // Lista todos os produtos, com o nome da categoria já incluído (JOIN)
-    // Aceita um termo de pesquisa opcional (procura por nome OU código)
-    public static function listarTodas($pesquisa = null) {
+    // Lista produtos, com filtros opcionais: pesquisa (nome/código), categoria e data de cadastro
+    public static function listarTodas($pesquisa = null, $categoriaId = null, $data = null) {
         $db = Database::getConnection();
 
         $sql = "SELECT p.*, c.nome AS categoria_nome
                 FROM produtos p
                 LEFT JOIN categorias c ON c.id = p.categoria_id";
 
+        $condicoes = [];
         $params = [];
+
         if (!empty($pesquisa)) {
-            $sql .= " WHERE p.nome LIKE :pesquisa OR p.codigo LIKE :pesquisa";
-            $params[':pesquisa'] = '%' . $pesquisa . '%';
+            $condicoes[] = "(p.nome LIKE :pesquisa1 OR p.codigo LIKE :pesquisa2)";
+            $params[':pesquisa1'] = '%' . $pesquisa . '%';
+            $params[':pesquisa2'] = '%' . $pesquisa . '%';
+        }
+
+        if (!empty($categoriaId)) {
+            $condicoes[] = "p.categoria_id = :categoria_id";
+            $params[':categoria_id'] = $categoriaId;
+        }
+
+        if (!empty($data)) {
+            $condicoes[] = "DATE(p.data_criacao) = :data";
+            $params[':data'] = $data;
+        }
+
+        if ($condicoes) {
+            $sql .= " WHERE " . implode(" AND ", $condicoes);
         }
 
         $sql .= " ORDER BY p.nome ASC";
