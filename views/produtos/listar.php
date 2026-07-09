@@ -56,6 +56,7 @@ if (!isset($_SESSION['usuario_id'])) {
         <table>
             <thead>
                 <tr>
+                    <th>Foto</th>
                     <th>Código</th>
                     <th>Nome</th>
                     <th>Categoria</th>
@@ -63,6 +64,7 @@ if (!isset($_SESSION['usuario_id'])) {
                     <th>Preço (Kz)</th>
                     <th>Preço (USD)</th>
                     <th>Ações</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -73,6 +75,14 @@ if (!isset($_SESSION['usuario_id'])) {
                 <?php else: ?>
                     <?php foreach ($produtos as $produto): ?>
                         <tr>
+                            <td>
+    <?php if (!empty($produto['foto'])): ?>
+        <img src="<?= htmlspecialchars($produto['foto']) ?>" alt="Foto do produto" width="50" style="border-radius:4px;">
+    <?php else: ?>
+        —
+    <?php endif; ?>
+</td>
+
                             <td><?= htmlspecialchars($produto['codigo']) ?></td>
                             <td><?= htmlspecialchars($produto['nome']) ?></td>
                             <td><?= htmlspecialchars($produto['categoria_nome']) ?></td>
