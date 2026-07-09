@@ -13,7 +13,7 @@
  */
  
 // ALTERA AQUI a senha que queres usar para entrar no sistema:
-$senhaEmTextoPuro = "lesly123";
+$senhaEmTextoPuro = "admin123";
  
 $hash = password_hash($senhaEmTextoPuro, PASSWORD_DEFAULT);
  

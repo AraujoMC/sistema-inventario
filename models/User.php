@@ -22,7 +22,8 @@ class User {
         $sql = "SELECT u.*, p.nome AS perfil_nome
                 FROM utilizadores u
                 JOIN perfis p ON p.id = u.perfil_id
-                ORDER BY u.nome ASC";
+                WHERE u.ativo = 1
+                ORDER BY u.nome";
         $stmt = $db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
