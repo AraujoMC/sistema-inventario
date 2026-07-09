@@ -2,7 +2,8 @@
 // Esta parte vem no topo — mostra erro se o backend mandou um
 session_start();
 $erro = $_SESSION['erro_login'] ?? null;
-unset($_SESSION['erro_login']);
+$msg = $_SESSION['msg_login'] ?? null;
+unset($_SESSION['erro_login'], $_SESSION['msg_login']);
 ?>
 <!DOCTYPE html>
 <html lang="pt">
@@ -19,6 +20,10 @@ unset($_SESSION['erro_login']);
             <p class="erro"><?= htmlspecialchars($erro) ?></p>
         <?php endif; ?>
 
+        <?php if ($msg): ?>
+            <p class="sucesso"><?= htmlspecialchars($msg) ?></p>
+        <?php endif; ?>
+
         <form action="../../index.php?action=login" method="POST" id="formLogin">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" required>
@@ -29,7 +34,7 @@ unset($_SESSION['erro_login']);
             <button type="submit">Entrar</button>
         </form>
 
-        <a href="recuperar_senha.php">Esqueci a senha</a>
+        <a href="recuperar.php">Esqueci a senha</a>
     </div>
 
 <script src="../../assets/js/validacao.js"></script>

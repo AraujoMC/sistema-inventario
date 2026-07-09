@@ -1,7 +1,9 @@
 <?php
 namespace Controllers;
 require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../models/RecuperacaoSenha.php';
 use Models\User;
+use Models\RecuperacaoSenha;
 
 class AuthController {
    public function autenticar() {
@@ -46,5 +48,57 @@ class AuthController {
         session_destroy();
         header('Location: views/auth/login.php');
         exit;
+    }
+
+    // PASSO 1: pede o email e gera um token (simulado — mostrado no ecrã em vez de enviado por email)
+    public function solicitarRecuperacao() {
+        if (session_status() === PHP_SESSION_NONE) { session_start(); }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+            $usuario = User::buscarPorEmail($email);
+
+            if ($usuario) {
+                $id = is_object($usuario) ? $usuario->id : $usuario['id'];
+                $token = bin2hex(random_bytes(16));
+                RecuperacaoSenha::criar($id, $token);
+                $_SESSION['token_simulado'] = $token;
+            }
+
+            // Por segurança, a mensagem é sempre igual, exista ou não o email
+            $_SESSION['msg_recuperacao'] = "Se o email existir, foi gerado um link de recuperação.";
+            header('Location: views/auth/recuperar.php');
+            exit;
+        }
+    }
+
+    // Mostra o formulário de nova senha (GET, a partir do link do email/simulação)
+    public function mostrarRedefinir() {
+        $token = $_GET['token'] ?? '';
+        require_once __DIR__ . '/../views/auth/redefinir.php';
+    }
+
+    // PASSO 2: valida o token e grava a nova senha
+    public function redefinirSenha() {
+        if (session_status() === PHP_SESSION_NONE) { session_start(); }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $token = $_POST['token'] ?? '';
+            $novaSenha = $_POST['nova_senha'] ?? '';
+
+            $registo = RecuperacaoSenha::buscarPorToken($token);
+
+            if ($registo && strlen($novaSenha) >= 6) {
+                $hash = password_hash($novaSenha, PASSWORD_DEFAULT);
+                User::atualizarSenha($registo['utilizador_id'], $hash);
+                RecuperacaoSenha::marcarUsado($registo['id']);
+                $_SESSION['msg_login'] = "Senha redefinida com sucesso. Podes iniciar sessão.";
+            } else {
+                $_SESSION['msg_login'] = "Token inválido ou senha demasiado curta.";
+            }
+
+            header('Location: views/auth/login.php');
+            exit;
+        }
     }
 }

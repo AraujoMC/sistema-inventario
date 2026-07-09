@@ -64,6 +64,11 @@ $perfilUsuario = $_SESSION['usuario_perfil'];
                 <h3>Utilizadores</h3>
                 <p>Gerir contas e perfis de acesso</p>
             </a>
+            <a href="index.php?action=relatorios" class="dashboard-card">
+                <div class="dashboard-icone">📊</div>
+                <h3>Relatórios</h3>
+                <p>Estatísticas e relatórios do sistema</p>
+            </a>
         </div>
     </main>
 </body>
