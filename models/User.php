@@ -75,7 +75,9 @@ class User {
 
     public static function apagar($id) {
         $db = Database::getConnection();
-        $sql = "DELETE FROM utilizadores WHERE id = :id";
+    $sql = "UPDATE utilizadores
+            SET ativo = 0
+            WHERE id = :id";
         $stmt = $db->prepare($sql);
         return $stmt->execute([':id' => $id]);
     }
