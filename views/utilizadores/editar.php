@@ -1,8 +1,8 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) { session_start(); 
+}
 if (!isset($_SESSION['usuario_id'])) {
-    header('Location: ../auth/login.php');
-    exit;
+  header('Location: views/auth/login.php');   // ✅ correcto   // ✅ correcto
 }
 ?>
 <!DOCTYPE html>

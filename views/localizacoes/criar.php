@@ -1,7 +1,7 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
 if (!isset($_SESSION['usuario_id'])) {
-    header('Location: ../auth/login.php');
+   header('Location: views/auth/login.php');   // ✅ correcto
     exit;
 }
 $erro = $_SESSION['erro_form'] ?? null;
