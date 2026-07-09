@@ -77,7 +77,7 @@ if (!isset($_SESSION['usuario_id'])) {
                         <tr>
                             <td>
     <?php if (!empty($produto['foto'])): ?>
-        <img src="<?= htmlspecialchars($produto['foto']) ?>" alt="Foto do produto" width="50" style="border-radius:4px;">
+        <img src="<?= htmlspecialchars($produto['foto']) ?>" alt="Foto do produto" width="70" style="border-radius:4px;">
     <?php else: ?>
         —
     <?php endif; ?>
