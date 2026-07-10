@@ -3,6 +3,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+require_once __DIR__ . '/vendor/autoload.php';
+
 require_once 'controllers/AuthController.php';
 require_once 'controllers/CategoriaController.php';
 require_once 'controllers/UnidadeController.php';
